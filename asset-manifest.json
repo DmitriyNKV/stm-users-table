@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/stm-users-table/static/css/main.94ddf57b.css",
+    "main.js": "/stm-users-table/static/js/main.8c1a4298.js",
+    "index.html": "/stm-users-table/index.html",
+    "main.94ddf57b.css.map": "/stm-users-table/static/css/main.94ddf57b.css.map",
+    "main.8c1a4298.js.map": "/stm-users-table/static/js/main.8c1a4298.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.94ddf57b.css",
+    "static/js/main.8c1a4298.js"
+  ]
+}
