@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import UserTable from './components/UserTable/UserTable';
+import UserFilter from './components/UserFilter/UserFilter';
+import Loader from './components/Loader/Loader';
+import useUsersApi from './api/users';
+import { User } from './api/types';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App: React.FC = () => {
+    const { users, loading, error } = useUsersApi();
+    const [filter, setFilter] = useState<string>('');
+    const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
+
+
+    //обновляем отфильтрованный список пользователей при изменении фильтра или списка юзеров
+    useEffect(() => {
+        setFilteredUsers(users.filter(user =>
+            user.name.first.toLowerCase().includes(filter.toLowerCase()) ||
+            user.name.last.toLowerCase().includes(filter.toLowerCase())
+        ));
+    }, [filter, users]);
+
+    if (loading) return <Loader />;
+    if (error) return <div>Error loading users: {error.message}</div>;
+
+    return (
+        <div className="app-container">
+            <UserFilter setFilter={setFilter} />
+            <UserTable users={filteredUsers} />
+        </div>
+    );
+};
 
 export default App;

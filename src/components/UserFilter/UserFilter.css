@@ -1,0 +1,21 @@
+
+.user-filter-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.user-filter-input {
+    padding: 10px;
+    width: 300px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+}
+
+.user-filter-input:focus {
+    outline: none;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}

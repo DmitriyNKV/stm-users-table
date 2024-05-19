@@ -1,13 +1,18 @@
-// api/users.js
 import { useState, useEffect } from 'react';
+import { User } from './types';
 
-function useUsersApi() {
-    const [users, setUsers] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+interface UsersApiHook {
+    users: User[];
+    loading: boolean;
+    error: Error | null;
+}
 
+function useUsersApi(): UsersApiHook {
+    const [users, setUsers] = useState<User[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<Error | null>(null);
 
-//загружаем данные пользователей при монтировании компонента
+    // //загружаем данные пользователей при монтировании компонента
     useEffect(() => {
         fetch('https://randomuser.me/api/?results=15')
             .then(response => response.json())
